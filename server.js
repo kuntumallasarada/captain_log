@@ -33,16 +33,9 @@ app.get('/logs',(req,res)=>{
     })
 })
 
-//Show route
-app.get('/logs/:id',(req,res)=>{
-   Log.findById(req.params.id,(err,foundLog)=>{
-    res.render('Show',{
-        log:foundLog
-    })
-   })
-})
 //New Route
 app.get('/logs/new',(req,res)=>{
+    console.log("new route")
     res.render('New');
 })
 
@@ -61,6 +54,15 @@ app.post('/logs',(req,res)=>{
     })
 })
 
+//Show route
+app.get('/logs/:id',(req,res)=>{
+   Log.findById(req.params.id,(err,foundLog)=>{
+    res.render('Show',{
+        log:foundLog
+    })
+   })
+})
+
 //Edit route
 app.get('/logs/:id/edit',(req,res)=>{
     Log.findById(req.params.id,(err,foundLog)=>{
@@ -70,7 +72,7 @@ app.get('/logs/:id/edit',(req,res)=>{
     })
 })
 
-//Put route
+//Put/Update route
 app.put('/logs/:id',(req,res)=>{
     if(req.body.shipIsBroken === 'on'){
         req.body.shipIsBroken = true;

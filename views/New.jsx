@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 
  class New extends Component {
   render() {
+    console.log("new page")
     return (
+        <body style={{backgroundColor:'steelblue'}}>
       <div>
-        <h1>New Captain Log</h1>
+        <h1 style={{textAlign:'center',color:'darkblue',fontSize:'40px'}}>New Captain Log</h1>
       <form action='/logs' method='POST'>
         TITLE: <input type="text" name="title" /><br/><br/>
        ENTRY:  <input type="textarea" name="entry" /><br/><br/>
@@ -13,6 +15,7 @@ import React, { Component } from 'react'
         
       </form>
       </div>
+      </body>
     )
   }
 }
