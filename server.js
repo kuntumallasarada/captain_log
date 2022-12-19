@@ -61,6 +61,36 @@ app.post('/logs',(req,res)=>{
     })
 })
 
+//Edit route
+app.get('/logs/:id/edit',(req,res)=>{
+    Log.findById(req.params.id,(err,foundLog)=>{
+        res.render('Edit',{
+            log:foundLog
+        })
+    })
+})
+
+//Put route
+app.put('/logs/:id',(req,res)=>{
+    if(req.body.shipIsBroken === 'on'){
+        req.body.shipIsBroken = true;
+    }
+    else{
+        req.body.shipIsBroken = false;
+    }
+    Log.findByIdAndUpdate(req.params.id,req.body,(err,updatedLog)=>{
+        res.redirect(`/logs/${req.params.id}`);
+    })
+})
+
+
+//Delete Route
+app.delete('/logs/:id',(req,res)=>{
+    Log.findByIdAndRemove(req.params.id,(err,deletedLog)=>{
+        res.redirect('/logs')
+    })
+})
+
 app.listen(3000,()=>{
     console.log('Listening');
 })

@@ -16,7 +16,10 @@ import React, { Component } from 'react'
                   The <a href={`/logs/${log.id}`}>{log.title}</a>
                   is  {log.entry}<br/>
                   {log.shipIsBroken ? `Ship is broken`:`Ship is not broken`} <br/> 
-
+                <form action={`logs/${log.id}?_method=DELETE`} method="POST">
+                    <input type='submit' value='DELETE'/>
+                </form>
+                <a href={`/logs/${log.id}/edit`}>Edit this Log</a>
                 </li>
                )
             })}
